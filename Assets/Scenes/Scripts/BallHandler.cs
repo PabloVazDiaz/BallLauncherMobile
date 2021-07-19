@@ -59,6 +59,7 @@ public class BallHandler : MonoBehaviour
     private void LaunchBall()
     {
         currentBall.bodyType = RigidbodyType2D.Dynamic;
+        currentBall.gameObject.GetComponent<Projectile>().Launch();
         currentBall = null;
         Invoke(nameof(DetachBall),0.15f);
 
