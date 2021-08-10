@@ -49,7 +49,11 @@ public class BallHandler : MonoBehaviour
 
     private void SpawnNewBall()
     {
-        GameObject ballInstance = Instantiate(ballPrefab, pivot.position, Quaternion.identity);
+        GameObject birdToSpawn = GameController.instance.NextBird();
+        if (birdToSpawn == null)
+            return;
+
+        GameObject ballInstance = Instantiate(birdToSpawn, pivot.position, Quaternion.identity);
         currentBall = ballInstance.GetComponent<Rigidbody2D>();
         currentSpringJoint = ballInstance.GetComponent<SpringJoint2D>();
 
@@ -73,4 +77,6 @@ public class BallHandler : MonoBehaviour
 
         Invoke(nameof(SpawnNewBall), spawnDelay);
     }
+
+    
 }
